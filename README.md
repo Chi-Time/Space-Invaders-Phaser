@@ -118,7 +118,9 @@ As well as containing these variables the player will also have a series of func
 
 -  **RespawnPlayer** - *This function will be responsible for respawning the player after a certain time has elapsed.*
 
--  **MovePlayer** - *This function will be responsible for moving the player across the screen.*
+-  **MovePlayerLeft** - *This function will be responsible for moving the player left, across the screen.*
+
+-  **MovePlayerRight** - *This function will be responsible for moving the player right, across the screen.*
 
 -  **FireBullet** - *This function will be responsible for generating bullets.*
 
