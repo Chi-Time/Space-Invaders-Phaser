@@ -1,11 +1,6 @@
-# Space-Invaders-Phaser
-An in-depth and extensive space invaders clone made using ES5 Javascript and the Phaser framework (at time of creation, project uses current version **2.4.6 - "Baerlon"**). 
-
-The project was created as a test of my JavaScript knowledge after about 2 years of inactivity in the language, along with being a short usability test of the Phaser framework and finally as a display project for my univeristy portfolio. Due to my extensive learning throughout, the project is designed in such a way that beginners to the Phaser framework can look through and see some of the various features and power the framework has to offer. The project was designed with clarity in mind and as such comments are extensive throughout. Followed below this introduction is an extremely short GDD detailing the game.
-
 # Space Invaders Short GDD
 
-This is a short Game Design Document that will seek to provide an overview and basis of the skills and techniques used within the project along with an overview of the game's design.
+## Introduction
 
 ## Index of Contents
 
@@ -198,20 +193,8 @@ As well as these variables the row will also contain various functions exclusive
 As well as seperate rows, there will be an overarching group that will control all enemies rows at once. This group will move the enemies, respawn rows and pick an enemy from a random row to fire a bullet. The variables are as follows:
 
 -  **movementDelay : number** - *The seconds between each movement step. This will define how quickly the group moves.*
--  **isMovingLeft : boolean** - *A boolean flag that decides which direction the group moves.*
--  **descenHeight : number** - *The height at which the group descends when reaching either side.*
--  **scoreWorth : number** - *The wave's value of points, this will define the number of points awarded to the player upon the waves death.*
+-  ****
 
-As well as these variables the wave will also require a series of functions exclusive to it. These are as follows:
-
--  **Movement** - *This function is responsible for moving the group either left or right based upon the boolean flag.*
--  **Descend** - *This function is responsible for droppping the wave down the screen when it reaches a side.*
--  **AddRow** - *This function is responsible for adding a row to the wave.*
--  **RemoveRow** - *This function is responsible for removing a row from the wave.*
--  **KillWave** - *This function is responsible for removing the current wave from the game. Upon destruction it will call the IncreaseScore function.*
--  **RespawnWave** - *This function is responsible for respawning the wave upon wave restart.*
--  **IncreaseScore** - *This function is responsible for increasing the player's score.*
--  **FireBullet** - *This function is responsible for picking a random row and firing a bullet from the front most enemy.*
 
 
 <a name="UI/Scoring"></a>
@@ -251,24 +234,6 @@ The game will need some global variables that can be passed around between the s
 -  **enemyBullet : object** - *This variable will be used to control a specific bullet defined above. The bullet will be set that it is an enemy bullet.*
 -  **enemyBulletGroup : object** - *This variable will be used to control the group of enemy bullet's which the enemies can fire.*
 -  **enemyGroup : object** - *This variable will be used to control the enemy group as a whole. This allows for interaction with it's movement, death, respawn etc.*
-
-As well as these variables the game will also have a series of functions to delegate control and handle events throughout the game cycle. These are as follows:
-
--  **create** - *This function is responsible for creating any and all assets. It is called right after preload has finished.*
-
--  **InitGameDefaults** - *This function is responsible for setting all game values to their defaults. E.g. score, lives etc.*
--  **InitPhysics** - *This function is responsible for creating all required physics systems for the game.*
--  **InitGraphics** - *This function is responsible for creating all required sprite assets and graphics for the game.*
--  **InitObjects** - *This function is responsible for creating all required objects and groups for the game.*
--  **InitInput** - *This function is responsible for creating all required input listeners for the game.*
--  **InitEventHandlers** - *This function is responsible for creating all required event handlers such as movement delays etc.*
--  **InitAudio** - *This function is responsible for creating all required audio assets for the game.*
--  **InitUI** - *This function is responsible for creating all required UI elements and displaying them to the user.*
-
--  **update** - *This function is responsible for constantyl polling any and all changes for the game as they occur.*
-
--  **PollInput** - *This function is responsible for reading input and executing logic based upon it.*
-
 
 <a name="External Assets"></a>
 ## External Assets
