@@ -328,7 +328,7 @@ Space Invaders project
         │   │   preloadText.png
         │   │   ...
         │
-        ├───images - subfolder
+        ├───sprites - subfolder
         │   │   preloadBar.png
         │   │   splashscreen.png
         │   │   muteButtonOn.png
