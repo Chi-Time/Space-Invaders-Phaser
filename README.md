@@ -32,7 +32,7 @@ This is a short Game Design Document that will seek to provide an overview and b
 
 -  Main menu with mute audio option.
 -  Player get's three lives.
--  Player fires one bullet at a time nad cannot fire until bullet is dead.
+-  Player fires 3 bullets at a time and cannot fire until at least one bullet is dead.
 -  Player can move only horizontally.
 -  Upon player death wave resets.
 -  Enemies move horizontally only.
@@ -107,6 +107,7 @@ The player will be a seperate object that will contain a variety of variables th
 -  **health : number** - *The player's health value, this will only be 1 for the purposes of this game.*
 -  **speed : number**  - *The player's movement speed value, this will define how fast the player can move in either direction.*
 -  **lives : number** - *The player's number of lives, this will define how many times the player can die before the game ends.*
+-  **bulletCount : number** - *The player's number of bullets fired, this will define how many bullest the player has fired before they are unable to fire another.*
 
 As well as containing these variables the player will also have a series of functions exclusive to it. These functions will be the following:
 
