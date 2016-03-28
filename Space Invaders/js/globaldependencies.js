@@ -4,6 +4,8 @@ var player;
 var playerSpeed = 65;
 // The enemy object.
 var enemy;
+// The alien object.
+var alien;
 // The enemy row group.
 var rowGroup;
 // The entire enemy wave group.
