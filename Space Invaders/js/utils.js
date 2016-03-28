@@ -2,6 +2,5 @@
 function RandomRange (min, max)
 {
     var randomNumber = Math.floor(Math.random() * (max - 1 + min)) + min;
-    
     return randomNumber;
 }
