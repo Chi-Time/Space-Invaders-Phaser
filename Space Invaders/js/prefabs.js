@@ -155,12 +155,15 @@ Alien = function (xPos, yPos, anchorX, anchorY, scoreWorth, speed)
     // Move's the alien ship.
     this.Move = function ()
     {
+        // Is the alien ship on the left of the screen?
         if(this.isLeft)
         {
+            // Move the alien right.
             this.body.velocity.x = speed;
         }
         else
         {
+            // Move the alien left.
             this.body.velocity.x = -speed;
         }
     };
@@ -168,38 +171,81 @@ Alien = function (xPos, yPos, anchorX, anchorY, scoreWorth, speed)
     // Spawn's the alien at a random side of the screen.
     this.SpawnShip = function ()
     {
-        var randDir = RandomRange(0, 4);
+        // Pick a random number from 0 - 1
+        var randDir = RandomRange(0, 3);
         
         if(randDir == 0)
         {
+            // Spawn the alien to the left of the screen.
             this.isLeft = true;
             this.reset(0,60);
-            this.Move()
+            // Move the alien.
+            this.Move();
+            
+            console.log(alien.body.x);
         }
         else if( randDir == 1)
         {
+            // Spawn the alien to the right of the screen.
             this.isLeft = false;
             this.reset(800,60);
-            this.Move()
+            // Move the alien.
+            this.Move();
+            
+            console.log(alien.body.x);
+        }
+        else 
+        {
+            console.log("Picked non-usable number: " + randDir);
         }
     };
     
     // Increase's the player's score.
     this.IncreaseScore = function ()
     {
-        
+        score += scoreWorth;
     };
     
     // Kill's the alien object.
     this.KillAlien = function ()
     {
-        
+        this.kill();
+        this.IncreaseScore();
     };
     
     // Kill's the alien object when it has left the screen.
     this.KillAlienOutOfBounds = function ()
     {
+        this.kill();
+        //delete Alien.prototype.update;
+        console.log("Left game bounds, culled");
         
+        //this.SpawnShip();
+    };
+    
+    // Checl's the alien's position within the game.
+    this.CheckPosition = function ()
+    {
+        if(alien.isLeft)
+        {
+            // Game screen is 800x600. So, if the alien has gone beyond 800 it has left the bounds.
+            // and can now be culled from the game.
+            if(alien.body.x > 800)
+            {
+                // Kill the alien as it left the screen bounds.
+                alien.KillAlienOutOfBounds();
+            }
+        }
+        else
+        {
+            // Sprite is 32x32 in size and so it must exit the screen at -32 before being culled,
+            // otherwise it would still be in view when it is culled.
+            if(alien.body.x < -32)
+            {
+                // Kill the alien as it left the screen bounds.
+                alien.KillAlienOutOfBounds();
+            }
+        }
     };
 };
 
@@ -207,6 +253,16 @@ Alien = function (xPos, yPos, anchorX, anchorY, scoreWorth, speed)
 Alien.prototype = Object.create(Phaser.Sprite.prototype);
 // The alien's default constructor.
 Alien.prototype.constructor = Enemy;
+
+Alien.prototype.update = function ()
+{
+    // Is the alien currently alive?
+    if(alien.alive)
+    {
+        console.log("Alien Updating");
+        this.CheckPosition();
+    }
+};
 
 // The bullet object.
 Bullet = function (xPos, yPos, anchor, speed, damageWorth, isEnemyBullet)
