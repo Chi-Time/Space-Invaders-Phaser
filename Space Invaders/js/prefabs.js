@@ -1,19 +1,21 @@
-// A barrier object.
-Player = function (x, y, anchor, health, speed, lives)
+// The player object.
+Player = function (xPos, yPos, anchor, health, speed, lives)
 {
     // Call for a sprite object.
-    Phaser.Sprite.call(this, game, x, y, "Player");
+    Phaser.Sprite.call(this, game, xPos, yPos, "Player");
     // Enable the physics for the sprite body.
 	game.physics.enable(this, Phaser.Physics.ARCADE);
     // Set the sprite's inital anchor value.
     this.anchor.set(anchor, 0.5);
     
     // The player's total health.
-    this.mHealth = health;
+    this.health = health;
     // The movement speed of the player.
-    this.mSpeed = speed;
+    this.speed = speed;
     // The player's total number of lives.
-    this.mLives = lives;
+    this.lives = lives;
+    // The number of bullets the player has currently fired.
+    this.bulletCount = 0;
     // Whether or not the player is able to fire a bullet.
     this.canFire = true;
     
@@ -36,9 +38,9 @@ Player = function (x, y, anchor, health, speed, lives)
     };
     
     // Respawns the player at the given coordinates.
-    this.RespawnPlayer = function (x, y)
+    this.RespawnPlayer = function (xPos, yPos)
     {
-        this.reset(x,y);
+        this.reset(xPos, yPos);
     };
     
     // Moves the player to the left by it's speed value.
@@ -64,12 +66,36 @@ Player = function (x, y, anchor, health, speed, lives)
     {
         if(this.canFire)
         {
-            console.log("Bullet Fired!");
+            if(this.bulletCount < 3)
+            {
+                this.bulletCount++;
+                console.log("Bullet Fired! " + this.bulletCount);
+            }
         }
     };
 };
 
-// Extension of the barrier object to become a Phaser sprite. 
+// Extension of the player object to become a Phaser sprite. 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
-// Create's a constructer from the object's parameters.
+// The player's default constructor.
 Player.prototype.constructor = Player;
+
+// The bullet object.
+Bullet = function (xPos, yPos, anchor, speed, damageWorth, isEnemyBullet)
+{
+    // Call for a sprite object.
+    Phaser.Sprite.call(this, game, xPos, yPos, "Player");
+    // Enable the physics for the sprite body.
+	game.physics.enable(this, Phaser.Physics.ARCADE);
+    // Set the sprite's inital anchor value.
+    this.anchor.set(anchor, 0.5);
+    
+    this.speed = speed;
+    this.damageWorth = damageWorth;
+    this.isEnemyBullet = isEnemyBullet;
+};
+
+// Extension of the bullet object to become a Phaser sprite. 
+Bullet.prototype = Object.create(Phaser.Sprite.prototype);
+// The bullet's default constructor.
+Bullet.prototype.constructor = Bullet;
